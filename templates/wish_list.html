@@ -1,0 +1,67 @@
+{% extends 'base.html'%} {%block content%}
+<div class="container">
+  <div
+    class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center"
+    id="gameRow"
+  >
+    {%for game in g.user.wishlists%}
+    <div class="col">
+      <img src="{{ game.game_thumb }}" class="card-img-top" alt="..." />
+
+      <div class="card-body">
+        <h5 class="card-title text-truncate">{{game.game_title}}</h5>
+        <p class="card-text">
+          <span class="badge text-bg-danger"
+            >{{ game.savings|float|round(2) }}% off</span
+          >
+        </p>
+
+        <p class="card-text">
+          <strong><b class="price"> ${{game.price}}</b></strong> List Price:
+          <b class="normal-price">${{game.sales_price}}</b>
+        </p>
+
+        <p class="card-text">
+          <strong>Store:</strong
+          ><i class="ms-1"
+            ><img src="{{game.store_id|string|get_store_icon}}" alt=""
+          /></i>
+          {{game.store_id|string|get_store_name}}
+        </p>
+        <a
+          href="#"
+          class="btn btn-outline-info p-1 m-1"
+          data-bs-toggle="modal"
+          data-bs-target="#gameModal"
+          onclick="populateModal('{{ game.game_title }}', '{{ game.savings|float|round(2) }}',
+           '{{ game.price }}', '{{ game.sales_price }}',
+           '{{ game.store_id }}', '{{ game.game_id}}', '{{ game.meta_critic_score}}',
+           '{{ game.steam_rating_percent}}','{{ game.steam_rating_text}}','{{ game.steam_rating_count}}')"
+          >Details</a
+        >
+
+        <a
+          href="/wishlist/remove/{{game.game_id}}"
+          class="btn btn-outline-danger p-1 m-1"
+          >Remove</a
+        >
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+  <div class="d-flex justify-content-center">
+    <div
+      id="loader"
+      class="spinner-border text-success"
+      style="width: 5rem; height: 5rem; display: none"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+
+{% include 'modal_content.html' %}
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+{%endblock%}

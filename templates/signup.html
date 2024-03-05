@@ -1,0 +1,22 @@
+{% extends 'base.html'%} {%block content%}
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div
+      class="col-md-7 col-lg-5 p-4 shadow-lg rounded"
+      style="background-color: #333"
+    >
+      <h6 class="display-6">Join GameWatch today.</h6>
+      <form method="POST" id="user_form">
+        {{ form.hidden_tag() }} {% for field in form if field.widget.input_type
+        != 'hidden' %} {% for error in field.errors %}
+        <span class="text-danger">{{ error }}</span>
+        {% endfor %} {{ field.label(class="form-label mt-3") }} {{
+        field(placeholder="Enter valid " + field.label.text,
+        class="form-control") }} {% endfor %}
+
+        <button class="btn btn-primary btn-block mx-0 mb-2">Sign me up!</button>
+      </form>
+      {%endblock%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{%extends 'base.html'%}{%block content%}
+<div class="container">
+  <h3 class="display-3 mt-4">Notifications</h3>
+  {%for notification in notifications%}
+  <div class="card mb-5">
+    <div class="card-body">
+      <h5 class="card-title">Price Drop Alert</h5>
+      <p class="card-text">{{notification.content}}</p>
+      {%if notification.is_read%}
+      <a href="/notifications/mark/{{notification.id}}" class="btn btn-info"
+        >Mark as UnRead</a
+      >
+      {%else%}
+      <a href="/notifications/mark/{{notification.id}}" class="btn btn-success"
+        >Mark as Read</a
+      >
+      {%endif%}
+      <a href="/notifications/delete/{{notification.id}}" class="btn btn-danger"
+        >Delete</a
+      >
+    </div>
+  </div>
+  {%endfor%}
+</div>
+{%endblock%}

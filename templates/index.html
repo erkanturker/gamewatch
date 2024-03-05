@@ -1,0 +1,157 @@
+{% extends 'base.html'%} {%block content%}
+<div class="container">
+  <div
+    class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center"
+    id="gameRow"
+  >
+    {%for game in deals%}
+    <div class="col">
+      <img src="{{ game.thumb }}" class="card-img-top" alt="..." />
+
+      <div class="card-body">
+        <h5 class="card-title text-truncate">{{game.title}}</h5>
+        <p class="card-text">
+          <span class="badge text-bg-danger"
+            >{{ game.savings|float|round(2) }}% off</span
+          >
+        </p>
+
+        <p class="card-text">
+          <strong><b class="price"> ${{game.salePrice}}</b></strong> List Price:
+          <b class="normal-price">${{game.normalPrice}}</b>
+        </p>
+        <p class="card-text">
+          <strong>Deal Rating:</strong> {{game.dealRating}}
+        </p>
+        <p class="card-text">
+          <strong>Store:</strong>
+          <i class="m-1"><img src="{{game.storeID|get_store_icon}}" alt="" /></i
+          >{{game.storeID|get_store_name}}
+        </p>
+        <a
+          href="#"
+          class="btn btn-outline-info p-1 m-1"
+          data-bs-toggle="modal"
+          data-bs-target="#gameModal"
+          onclick="populateModal('{{ game.title }}', '{{ game.savings|float|round(2) }}',
+           '{{ game.salePrice }}', '{{ game.normalPrice }}',
+           '{{ game.storeID }}', '{{ game.gameID}}', '{{ game.metacriticScore}}',
+           '{{ game.steamRatingPercent}}','{{ game.steamRatingText}}','{{ game.steamRatingCount}}')"
+          >Details</a
+        >
+
+        {%if g.user %}
+        <a
+          href="/add_whislist?gameId={{game.gameID}}&storeId={{game.storeID}}&dealID={{game.dealID}}&savings={{game.savings}}"
+          class="btn btn-outline-success p-1"
+          >Add to Wishlist</a
+        >
+        {%else%}<a href="/login" class="btn btn-outline-success p-1"
+          >Login Add to Wishlist</a
+        >{%endif%}
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+  <div class="d-flex justify-content-center">
+    <div
+      id="loader"
+      class="spinner-border text-success"
+      style="width: 5rem; height: 5rem; display: none"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+{% include 'modal_content.html' %}
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  var nextPage = 1;
+  var isLoading = false;
+
+  async function loadNextPage() {
+    stores = await fetch("/static/data/stores.json").then((response) =>
+      response.json()
+    );
+
+    if (isLoading) return;
+    isLoading = true;
+    loaderEl = document.getElementById("loader");
+    loaderEl.style.display = "block";
+    await fetch(`/load_more?page=${nextPage}`)
+      .then((response) => response.json())
+      .then((data) => {
+        data.data.forEach((game) => {
+          // Create a new card element for each game
+          const roundedSavings =
+            Math.round(parseFloat(game.savings) * 100) / 100;
+
+          var cardDiv = document.createElement("div");
+          cardDiv.classList.add("col");
+          cardDiv.setAttribute("data-game-id", game.gameID);
+          cardDiv.innerHTML = `
+
+             <img src="${game.thumb}" class="card-img-top" alt="..." />
+             <div class="card-body">
+               <h5 class="card-title text-truncate">${game.title}</h5>
+               <p class="card-text">
+                 <span class="badge text-bg-danger">${roundedSavings}% off</span>
+               </p>
+               <p class="card-text">
+                 <strong><b class="price">$${
+                   game.salePrice
+                 }</b></strong> List Price: <b class="normal-price">$${
+            game.normalPrice
+          }</b>
+               </p>
+               <p class="card-text">
+                 <strong>Deal Rating:</strong> ${game.dealRating}
+               </p>
+               <p class="card-text"><strong>Store:</strong><i class="p-2"><img src="https://www.cheapshark.com/${
+                 stores.find((s) => s.storeID == game.storeID)?.images?.icon
+               }" alt="" /></i
+          > ${stores.find((s) => s.storeID == game.storeID)["storeName"]}</p>
+               <a
+           href="#"
+           class="btn btn-outline-info p-1 m-1"
+           data-bs-toggle="modal"
+           data-bs-target="#gameModal"
+           onclick="populateModal('${game.title}', '${roundedSavings}',
+            '${game.salePrice}', '${game.normalPrice}',
+            '${game.storeID}', '${game.gameID}', '${game.metacriticScore}',
+            '${game.steamRatingPercent}','${game.steamRatingText}','${
+            game.steamRatingCount
+          }')"
+           >Details</a
+         >
+               {% if g.user %}
+                 <a href="/add_whislist?gameId=${game.gameID}&storeId=${
+            game.storeID
+          }&dealID=${game.dealID}&savings=${
+            game.savings
+          }" class="btn btn-outline-success p-1">Add to Wishlist</a>
+               {% else %}
+                 <a href="/login" class="btn btn-outline-success p-1">Login Add to Wishlist</a>
+               {% endif %}
+             </div>
+
+         `;
+          // Append the new card element to the gameRow
+          document.getElementById("gameRow").appendChild(cardDiv);
+        });
+        nextPage++;
+        isLoading = false;
+        loaderEl.style.display = "none";
+      });
+  }
+  window.addEventListener("scroll", () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      loadNextPage();
+    }
+  });
+</script>
+
+{%endblock%}

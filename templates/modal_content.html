@@ -1,0 +1,69 @@
+<div
+  class="modal fade"
+  id="gameModal"
+  tabindex="-1"
+  aria-labelledby="gameModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gameModalLabel">Game Details</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <h5>Deal Info</h5>
+          <div class="col-md-6">
+            <p class="mb-0">
+              <strong>Cheapest Ever:</strong>
+              <span id="cheapastEver"></span>
+            </p>
+            <p class="mt-0">
+              <span id="cheapastPriceEver"></span>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p class="mb-0">
+              <strong>Cheapest Current Store:</strong>
+              <span id="isCheapestCurrentStore"></span>
+            </p>
+            <p>
+              <strong></strong>
+              <span id="cheapestCurrentStore"></span>
+            </p>
+          </div>
+          <hr />
+          <div class="row">
+            <h5>Game Info</h5>
+            <div class="col-md-6">
+              <p class="mb-0">
+                <strong>Metacritic Score:</strong>
+                <span id="metaCriticScore"></span>
+              </p>
+              <p class="mb-0">
+                <strong>Steam Rating:</strong>
+                <span id="steamRatingText"></span>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-0">
+                <strong>Steam Rating Count:</strong>
+                <span id="steamRatingCount"></span>
+              </p>
+              <p class="mb-0">
+                <strong>Steam Rating Percent:</strong>
+                <span id="steamRatingPercent"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
