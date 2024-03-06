@@ -1,56 +1,23 @@
-# Capstone Project One
+# GameWatch
+GameWatch is a web application that helps users track prices for digital PC games across multiple stores, including Steam, GreenManGaming, Fanatical, and others. It features a user-friendly interface that allows users to easily search for games, compare prices, and navigate between different stores. Users can create their own favorites or wishlists to track prices for specific games they are interested in. Additionally, it includes a notification system that alerts users when prices drop for games on their favorites or wishlist
 
-We have broken down the Capstone Project into easy-to-follow steps. Each step of the capstone contains a link with instructions for that step. Here’s a quick overview of what you’ll do for each step of your capstone project:
 
-1. Step One: Initial Project Ideas: You’ll pick up to 3 project ideas to propose to your mentor and the Springboard community. You’ll also explore some potential APIs.
-2. Step Two: Project Proposal: For this step, you’ll write a proposal for the site you want to build. This will help your mentor better understand your chosen capstone project idea.
-3. Step Three: Schema Design and API Selection: After your mentor approves of your capstone project proposal, you’ll figure out the database design of your application and which API you’ll be using.
-4. Step Four: Coding User Flows: Once you’ve figured out what you’re building, you’ll write the code to implement it. It’s important to think about what you want a user’s experience to be like as they navigate your site.
-5. Step Five: Polishing Your Application: Once you have the core functionality implemented, you’ll focus on additional UI enhancements and styling for your application.
-6. Step Six: Documenting and Submission: You’ve done a lot of work so now it’s time to show your mentor your progress! Create a README in markdown, make sure your GitHub is organized, and submit your finalized project.
 
-## Overview
+### Users are able to see deals across all stores on the main page.
+![image](https://github.com/hatchways-community/capstone-project-one-390ef5639a3347e78f164328f13ebfb3/assets/63922809/82316200-680a-44d3-8ec4-1b71328cd7d7)
 
-For your first Capstone Project, you’ll build a database-driven website off an external
-API of your choice. Your finished capstone will be an integral part of your portfolio; it will demonstrate to potential employers everything you’ve learned from this course.
+### Users are able to see the best deals across all stores and find out what the cheapest price ever is.
+![image](https://github.com/hatchways-community/capstone-project-one-390ef5639a3347e78f164328f13ebfb3/assets/63922809/fd2cc60d-184b-4953-aada-657ae8ff1c5d)
+![image](https://github.com/hatchways-community/capstone-project-one-390ef5639a3347e78f164328f13ebfb3/assets/63922809/cb155585-7cda-429b-94d8-21bf7ab0133d)
 
-We want you to work on a challenging project that will incorporate all of the back-end
-skills you’ve been developing and some of your front-end skills from the last section.
-The goal of this project isn’t to create something that’s never been done before. You
-could potentially create a website similar to one that already exists, or use a popular
-API. That being said, we do encourage you to be creative when building your site. You’re free to choose any API you’d like to use and we encourage you to tap into your
-imagination throughout the project.
+### Authenticated users can see their wishlist.
 
-There is a term in software development called CRUD - Create, Read, Update, Delete. This refers to all of the basic operations that a relational database performs. Your website should have more functionality than simple CRUD.
+![image](https://github.com/hatchways-community/capstone-project-one-390ef5639a3347e78f164328f13ebfb3/assets/63922809/80759a5b-9e23-4ab7-a0aa-d134398f7e7e)
 
-## Examples
+### If the GameWatch app finds out the cheapest price for an item on their wishlist, it sends notifications.
 
-There are thousands of free, publically available APIs. If you love cars, you can pick
-from dozens of automotive APIs to build something that will reflect your passion. If you’re more into history, look into an API that lists the nobility of Europe. If you love sports, build a site about India’s top cricketers or your local football league.
+![image](https://github.com/hatchways-community/capstone-project-one-390ef5639a3347e78f164328f13ebfb3/assets/63922809/24825169-b636-448b-ac3a-53ac83fb0eec)
 
-Let’s give you an example of what a site could look like. Say you choose an API like The
-Movie Database, your site could have a landing page saying “Welcome To MyMovieDB” and a separate page that displays a sortable list of all the movies in the API. This would be CRUD.
+### Authenticated users are able to mark notifications as read, and when every notification is read, the notification tab no longer has an indicator (red circle)
 
-You could implement various filtering methods - to filter based on an actor, a director,
-the year the movie was released, etc. When you click on the record associated with the movie, you could redirect a user to a separate page that displays all of the data
-associated with that movie.
-
-Now let’s talk about bells and whistles. If you were to implement ONE feature like
-creating sharable lists of your favorite movies, finding and playing a trailer for the movie on-page, or a simple “recommendation system” that would recommend new movies based on similarities to movies you liked, this would go beyond CRUD. A simple
-“recommendation system” would be along the lines of, if you like Big Daddy with Adam
-Sandler, recommending other Adam Sandler comedies from the 90s or recommending
-movies his co-stars like Steve Buscemi starred in. This does not mean creating a
-complicated system from scratch like Netflix.
-
-It is better to pick a project that errs on the side of simple and boring than a complex
-project with a million moving parts you can get stuck in.
-
-[Here is an example of a previous project.](https://github.com/juliahazer/chart-my-team)
-
-## Guidelines
-
-1. You will use the following technologies in this project: Python/Flask, PostgreSQL, SQLAlchemy, Heroku, Jinja, RESTful APIs, JavaScript, HTML, CSS. Depending on your idea, you might end up using WTForms and other technologies discussed in the course.
-2. Every step of the project has submissions. This will alert your mentor to evaluate your work. Pay attention to the instructions so you submit the right thing. You will submit the link to your GitHub repo several times, this is for your mentor’s convenience. Your URL on GitHub is static and will not change.
-3. The first two steps require mentor approval to proceed, but after that, you are free to continue working on the project after you submit your work. For instance, you don’t need your mentor to approve your database schema before you start working on your site. Likewise, you don’t need your mentor to approve the first iteration of your site before you start polishing it.
-4. If you get stuck, there is a wealth of resources at your disposal. The course contains all of the material you will need to complete this project, but a well-phrased Google search might yield you an immediate solution to your problem. Don’t forget that your Slack community, TAs, and your mentor there to help you out.
-5. Make sure you use a free API and deploy your project on Heroku , so everyone can see your work!
+![image](https://github.com/hatchways-community/capstone-project-one-390ef5639a3347e78f164328f13ebfb3/assets/63922809/06550381-4744-4c40-8339-fd63e4ab758c)
