@@ -1,7 +1,8 @@
 # GameWatch
+
+https://gamewatch.onrender.com
+
 GameWatch is a web application that helps users track prices for digital PC games across multiple stores, including Steam, GreenManGaming, Fanatical, and others. It features a user-friendly interface that allows users to easily search for games, compare prices, and navigate between different stores. Users can create their own favorites or wishlists to track prices for specific games they are interested in. Additionally, it includes a notification system that alerts users when prices drop for games on their favorites or wishlist
-
-
 
 ### Users are able to see deals across all stores on the main page.
 ![image](https://github.com/hatchways-community/capstone-project-one-390ef5639a3347e78f164328f13ebfb3/assets/63922809/82316200-680a-44d3-8ec4-1b71328cd7d7)
